@@ -1,0 +1,12 @@
+LOF uses density-based outlier detection to identify local outliers, points that are outliers with respect to their local neighborhood.
+from sklearn.neighbors import LocalOutlierFactor
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv (r'C:\Users\aman.saxena\Desktop\Book2.csv') 
+lof = LocalOutlierFactor(n_neighbors=20, contamination= 'auto') 
+d = df['height'].values.reshape(-1,1)
+y_pred = lof.fit_predict(d)
+X_scores = lof.negative_outlier_factor_
+print(y_pred)

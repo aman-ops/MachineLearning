@@ -1,0 +1,22 @@
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+This is a clustering algorithm (an alternative to K-Means) that clusters points together
+and identifies any points not belonging to a cluster as outliers.
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv (r'C:\Users\aman.saxena\Desktop\Book2.csv')
+dataset = df['height'].values.reshape(-1,1)
+from sklearn.cluster import DBSCAN
+outlier_detection = DBSCAN(
+ eps = .2, 
+ #metric='euclidean', 
+ min_samples = 5,
+ n_jobs = -1)
+clusters = outlier_detection.fit_predict(dataset)
+print(clusters)
+
+output:-
+values having -1 is outlier
+[-1 -1 -1 -1 -1  0  0  0  0  0  0  0  1  1  1  1  1 -1 -1 -1]

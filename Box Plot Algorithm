@@ -1,0 +1,13 @@
+Outlier is a value that lies in a data series on its extremes,
+which is either very small or large and thus can affect the overall observation made from the data series.
+ox plot diagram also termed as Whisker’s plot is a graphical method typically depicted by quartiles and inter 
+quartiles that helps in defining the upper limit and lower limit beyond which any data lying will be considered as outliers.
+
+import pandas as pd
+df = pd.read_csv (r'C:\Users\aman.saxena\Desktop\Book2.csv')
+#print (df)
+dataset = df.describe()
+import seaborn as sns 
+import matplotlib.pyplot as plt
+sns.boxplot(x= (df['height']))
+plt.show()

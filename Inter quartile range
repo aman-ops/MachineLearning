@@ -1,0 +1,19 @@
+IQR inter quartile range 
+This technique use to detect outlier Where Q3 is 75th percentile and Q1 is 25th percentile.
+
+import pandas as pd
+df = pd.read_csv (r'C:\Users\aman.saxena\Desktop\Book2.csv')
+#print (df)
+dataset = df.describe()
+#print (dataset)
+Q1 = df.height.quantile(0.25)
+Q3 = df.height.quantile(0.75)
+#print(Q1,Q3)
+IQR = Q3 - Q1
+#print(IQR)
+lower_limit = Q1-1.5*IQR
+upper_limit = Q3 +1.5*IQR
+#print(lower_limit, upper_limit)
+
+matrix = df[(df.height<lower_limit)| (df.height>upper_limit)]
+print(matrix)

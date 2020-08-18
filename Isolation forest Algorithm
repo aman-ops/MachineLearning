@@ -1,0 +1,50 @@
+Isolation Forest Algorithm :
+One of the newest techniques to detect anomalies is called Isolation Forests.
+The algorithm is based on the fact that anomalies are data points that are few and different.
+As a result of these properties, anomalies are susceptible to a mechanism called isolation.
+This method is highly useful and is fundamentally different from all existing methods.
+It introduces the use of isolation as a more effective and efficient means to detect anomalies than the
+commonly used basic distance and density measures. Moreover, this method is an algorithm with a low linear
+time complexity and a small memory requirement. It builds a good performing model with a small number of trees 
+using small sub-samples of fixed size, regardless of the size of a data set.
+
+
+-----------------------------------------------------
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.ensemble import IsolationForest
+df = pd.read_csv (r'C:\Users\aman.saxena\Desktop\Book2.csv')
+#print(df.head(10))
+model=IsolationForest(n_estimators=50, max_samples='auto', contamination='auto' ,max_features=1.0)
+model.fit(df[['height']])
+df['scores']=model.decision_function(df[['height']])
+df['anomaly']=model.predict(df[['height']])
+print(df.head(20))
+
+anomaly=df.loc[df['anomaly']==-1]
+print(anomaly)
+
+------------------------------------------------------
+
+output
+1    rohan     2.4 -0.081814       -1
+2      jay     3.8 -0.051907       -1
+3     anil     4.9  0.068234        1
+4    veeru     4.9  0.068234        1
+5     shiv     5.4  0.130340        1
+6      anu     5.4  0.130340        1
+7    monty     5.5  0.140080        1
+8    rahul     5.6  0.148218        1
+9   shivam     5.6  0.148218        1
+10  sameer     5.6  0.148218        1
+11   pawan     5.6  0.148218        1
+12  mohini     5.9  0.088987        1
+13    rita     6.0  0.111324        1
+14   peehu     6.0  0.111324        1
+15    ritu     6.1  0.091072        1
+16    anuj     6.1  0.091072        1
+17    golu    21.0 -0.172862       -1
+18   krish    26.2 -0.181992       -1
+19    arun    40.3 -0.261680       -1
